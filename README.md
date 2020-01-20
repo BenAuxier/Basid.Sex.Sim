@@ -22,4 +22,7 @@ Dominance
 Cell size
 
 Once these settings are set as desired, the program is run by entering the command:
+
 `./BMS_mating_counter_V5`
+
+The output of the files is a set of .dat files, which contain the fitness values for each cell, and corresponding mating types. The program also prints the population size and average fitness values of spores/mycelia at each generation. Using modifications of the attached bash scripts these outputs can be parsed for analysis.
