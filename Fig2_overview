@@ -1,0 +1,5 @@
+This is the data and mathematica code used to produce Figure 2 and Supplemental Figure 1 and 2. 
+
+The output file, collage.png, were combined in Inkscape.
+
+The mathematica code is meant to be run on a folder with the output files.
