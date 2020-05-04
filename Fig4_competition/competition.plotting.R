@@ -66,7 +66,7 @@ lparasites1 <- ggplot(data=d_link,aes(x=gen,y=mat1/tot1)) + geom_line(aes(group=
   ylab("")
   #ylab(" >66% Mating\nFitness\nNucleus 1")
 lparasites2 <- ggplot(data=d_link,aes(x=gen,y=mat2/tot2)) + geom_line(aes(group=prop,lty=prop),size=0.6) + facet_grid(cols=vars(d_link$role)) + 
-  scale_x_continuous(expand=c(0,0),limits=c(0,1000),breaks=c(0,250,500,750))+
+  scale_x_continuous(expand=c(0,0),limits=c(0,1000))+
   scale_y_continuous(expand=c(0,0),limits=c(-0.02,1.02))+
   theme_classic() + theme(axis.title.x = element_blank(),
                      strip.text.x = element_blank(),
@@ -81,7 +81,8 @@ lparasites2 <- ggplot(data=d_link,aes(x=gen,y=mat2/tot2)) + geom_line(aes(group=
 lpop_size <- ggplot(data=d_link,aes(x=gen,y=non_zero)) + geom_line(aes(group=prop,lty=prop)) + facet_grid(cols=vars(d_link$role)) + 
   scale_x_continuous(expand=c(0,0),limits=c(0,1000),breaks=c(0,250,500,750))+
   scale_y_continuous(expand=c(0,0),limits=c(-200,90200),breaks=c(0,30000,60000,90000))+
-  theme_classic() + ylab("") + xlab("Generation") +
+  theme_classic() + 
+  labs(y="",x="Generation",lty="Starting Proportion of  \n  non-DMF Alleles") +
   theme(
     panel.grid.minor=element_blank(),
     axis.text.y=element_blank(),
@@ -136,7 +137,7 @@ uparasites1 <- ggplot(data=d_unlink,aes(x=gen,y=mat1/tot1)) + geom_line(aes(grou
                      legend.position = "none") + 
   ylab("% Mating\nSpecialists\nNucleus 1")
 uparasites2 <- ggplot(data=d_unlink,aes(x=gen,y=mat2/tot2)) + geom_line(aes(group=prop,lty=prop),size=0.6) + facet_grid(cols=vars(d_unlink$role)) + 
-  scale_x_continuous(expand=c(0,0),limits=c(0,1000),breaks=c(0,250,500,750))+
+  scale_x_continuous(expand=c(0,0),limits=c(0,1000))+
   scale_y_continuous(expand=c(0,0),limits=c(-0.02,1.02))+
   theme_classic() + theme(axis.title.x = element_blank(),
                      strip.text.x = element_blank(),
@@ -152,15 +153,15 @@ uparasites2 <- ggplot(data=d_unlink,aes(x=gen,y=mat2/tot2)) + geom_line(aes(grou
 upop_size <- ggplot(data=d_unlink,aes(x=gen,y=non_zero)) + geom_line(aes(group=prop,lty=prop)) + facet_grid(cols=vars(d_unlink$role)) + 
   scale_x_continuous(expand=c(0,0),limits=c(0,1000),breaks=c(0,250,500,750))+
   scale_y_continuous(expand=c(0,0),limits=c(-200,90200),breaks=c(0,30000,60000,90000))+
-  theme_classic() + ylab("Population\nsize") + xlab("Generation") +
+  theme_classic() + 
+  labs(y="",x="Generation",lty="Starting Proportion of  \n  non-DMF Alleles") +
   theme(
     panel.grid.minor=element_blank(),
     axis.title.y = element_text(size=15),
     axis.title.x = element_text(size=15),
     panel.grid.major=element_line(size=0.3,color="grey90"),
     strip.text.x=element_blank(),
-    legend.position="bottom"
-  )
+    legend.position="bottom")
 
 
 
@@ -172,7 +173,7 @@ upop_size <- ggplot(data=d_unlink,aes(x=gen,y=non_zero)) + geom_line(aes(group=p
 #             nrow=4,heights=c(1.3,1,1,1.5))
 #grid.arrange(umaters1,uparasites1,umaters2,uparasites2,
 #             nrow=4,heights=c(1.3,1,1,1.5))
-pdf("/Users/user/Desktop/BMS/fig_competition/fig_comp.Apr30.pdf",width=12,height=8.3)
+pdf("/Users/user/Desktop/Basid.Sex.Sim/Fig4_competition/fig_comp.May2.pdf",width=12,height=8.3)
 grid.arrange(umaters1,lmaters1,
              uparasites1,lparasites1,
              umaters2,lmaters2,
