@@ -47,7 +47,7 @@ samples <- arrangeGrob(p1,p2,p3,p4,p5,p6,p7,nrow=1,widths=c(1.7,1,1,1,1,1,1))
 # prep --------------------------------------------------------------------
 
 
-setwd("/Users/user/Downloads/")
+setwd("/Users/user/Desktop/Basid.Sex.Sim/Fig4_competition/")
 #loads dataset
 d1 <- read.csv("output.grouped.V5.3.beta.csv",row.names = NULL)
 d1$trt <- sub("temp_","",d1$trt)
@@ -76,8 +76,9 @@ lmaters1 <- ggplot(data=d_link,aes(x=gen,y=p_maters1)) +
                      axis.ticks.x = element_blank(),
                      panel.grid.minor = element_blank(),
                      panel.grid.major = element_line(size=0.3,colour="grey90"),
-                     legend.position = "none") + 
-  ggtitle("Linkage = 1.0 (complete linkage)") +
+                     legend.position = "none",
+                     strip.background=element_blank()) + 
+  ggtitle("Linkage = 1.0 (no recombination)") +
   ylab("")
   #ylab("betaortion of\nmale function\nmating types 1")
 lmaters2 <- ggplot(data=d_link,aes(x=gen,y=p_maters2)) + 
@@ -121,13 +122,14 @@ lparasites2 <- ggplot(data=d_link,aes(x=gen,y=mat2/tot2)) + geom_line(aes(group=
 lpop_size <- ggplot(data=d_link,aes(x=gen,y=non_zero)) + geom_line(aes(group=beta,lty=beta)) + facet_grid(cols=vars(d_link$role)) + 
   scale_x_continuous(expand=c(0,0),limits=c(0,1000),breaks=c(0,250,500,750))+
   scale_y_continuous(expand=c(0,0),limits=c(-200,90200),breaks=c(0,30000,60000,90000))+
-  theme_bw() + ylab("") +
+  theme_bw() + ylab("") + labs(lty=expression(beta))+
   theme(
     panel.grid.minor=element_blank(),
     axis.text.y=element_blank(),
     panel.grid.major=element_line(size=0.3,color="grey90"),
     strip.text.x=element_blank(),
-    legend.position="bottom"
+    legend.position="bottom",
+    legend.title=element_text(size=18)
   )
 
 
@@ -142,8 +144,9 @@ umaters1 <- ggplot(data=d_unlink,aes(x=gen,y=p_maters1)) +
                      axis.ticks.x = element_blank(),
                      panel.grid.minor = element_blank(),
                      panel.grid.major = element_line(size=0.3,colour="grey90"),
-                     legend.position = "none") + 
-  ggtitle("Linkage = 0.0 (no linkage") +
+                     legend.position = "none",
+                     strip.background = element_blank()) + 
+  ggtitle("Linkage = 0.0 (free recombination)") +
   ylab("Proportion of\nmale function\nmating types 1")
 umaters2 <- ggplot(data=d_unlink,aes(x=gen,y=p_maters2)) + 
   scale_x_continuous(expand=c(0,0),limits=c(0,1000))+
@@ -185,12 +188,13 @@ uparasites2 <- ggplot(data=d_unlink,aes(x=gen,y=mat2/tot2)) + geom_line(aes(grou
 upop_size <- ggplot(data=d_unlink,aes(x=gen,y=non_zero)) + geom_line(aes(group=beta,lty=beta)) + facet_grid(cols=vars(d_unlink$role)) + 
   scale_x_continuous(expand=c(0,0),limits=c(0,1000),breaks=c(0,250,500,750))+
   scale_y_continuous(expand=c(0,0),limits=c(-200,90200),breaks=c(0,30000,60000,90000))+
-  theme_bw() + ylab("Population\nsize") +
+  theme_bw() + ylab("Population\nsize") + labs(lty=expression(beta))+
   theme(
     panel.grid.minor=element_blank(),
     panel.grid.major=element_line(size=0.3,color="grey90"),
     strip.text.x=element_blank(),
-    legend.position="bottom"
+    legend.position="bottom",
+    legend.title=element_text(size=18)
   )
 
 
@@ -209,6 +213,6 @@ data <- arrangeGrob(umaters1,lmaters1,
              uparasites2,lparasites2,
              upop_size,lpop_size,
              nrow=5,heights=c(1.55,1,1,1,2.0))
-pdf("/Users/user/Downloads/fig_comp.beta.Apr15.pdf",width=12,height=9.3)
+pdf("/Users/user/Desktop/Basid.Sex.Sim/Fig4_competition/fig_comp.beta.May18.pdf",width=12,height=9.3)
 grid.arrange(samples,data,nrow=2,heights=c(0.3,1))
 dev.off()

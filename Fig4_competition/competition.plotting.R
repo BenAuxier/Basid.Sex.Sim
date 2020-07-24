@@ -5,7 +5,7 @@ library(gridExtra)
 # prep --------------------------------------------------------------------
 
 
-setwd("/Users/user/Desktop/BMS/fig_competition")
+setwd("/Users/user/Desktop/Basid.Sex.Sim/Fig4_competition")
 #loads dataset
 d1 <- read.csv("output.grouped.V5.3.third.csv",row.names = NULL)
 d1$trt <- sub("temp_","",d1$trt)
@@ -28,22 +28,22 @@ d_unlink <- d2[d2$linkage=="unlink",]
 lmaters1 <- ggplot(data=d_link,aes(x=gen,y=p_maters1)) +
   scale_x_continuous(expand=c(0,0),limits=c(0,1000))+
   scale_y_continuous(expand=c(0,0),limits=c(-0.02,1.02))+
-  geom_line(aes(group=prop,lty=prop),size=0.6) + facet_grid(cols=vars(d_link$role)) + 
+  geom_line(aes(group=prop,lty=prop),lwd=0.3) + facet_grid(cols=vars(d_link$role)) + 
   theme_classic() + theme(axis.title.x = element_blank(),
                      axis.text = element_blank(),
                      axis.ticks.x = element_blank(),
                      panel.grid.minor = element_blank(),
                      panel.grid.major = element_line(size=0.3,colour="grey90"),
-                     plot.title = element_text(size=25),
+                     plot.title = element_text(size=12),
                      strip.background = element_blank(),
                      legend.position = "none") + 
-  ggtitle("Linkage = 1.0 (complete linkage)") +
+  ggtitle(expression(paste("   ",lambda, "= 1.0 (complete linkage)"))) +
   ylab("")
   #ylab("Proportion of\nmale function\nmating types 1")
 lmaters2 <- ggplot(data=d_link,aes(x=gen,y=p_maters2)) + 
   scale_x_continuous(expand=c(0,0),limits=c(0,1000))+
   scale_y_continuous(expand=c(0,0),limits=c(-0.02,1.02))+
-  geom_line(aes(group=prop,lty=prop),size=0.6) + facet_grid(cols=vars(d_link$role)) + 
+  geom_line(aes(group=prop,lty=prop),lwd=0.3) + facet_grid(cols=vars(d_link$role)) + 
   theme_classic() + theme(axis.title.x = element_blank(),
                      axis.text = element_blank(),
                      strip.text = element_blank(),
@@ -53,7 +53,7 @@ lmaters2 <- ggplot(data=d_link,aes(x=gen,y=p_maters2)) +
                      legend.position = "none") + 
   ylab("")
   #ylab("Proportion of\nmale function\nmating types 2")
-lparasites1 <- ggplot(data=d_link,aes(x=gen,y=mat1/tot1)) + geom_line(aes(group=prop,lty=prop),size=0.6) + facet_grid(cols=vars(d_link$role)) + 
+lparasites1 <- ggplot(data=d_link,aes(x=gen,y=mat1/tot1)) + geom_line(aes(group=prop,lty=prop),lwd=0.3) + facet_grid(cols=vars(d_link$role)) + 
   scale_x_continuous(expand=c(0,0),limits=c(0,1000))+
   scale_y_continuous(expand=c(0,0),limits=c(-0.02,1.02))+
   theme_classic() + theme(axis.title.x = element_blank(),
@@ -65,7 +65,7 @@ lparasites1 <- ggplot(data=d_link,aes(x=gen,y=mat1/tot1)) + geom_line(aes(group=
                      legend.position = "none") + 
   ylab("")
   #ylab(" >66% Mating\nFitness\nNucleus 1")
-lparasites2 <- ggplot(data=d_link,aes(x=gen,y=mat2/tot2)) + geom_line(aes(group=prop,lty=prop),size=0.6) + facet_grid(cols=vars(d_link$role)) + 
+lparasites2 <- ggplot(data=d_link,aes(x=gen,y=mat2/tot2)) + geom_line(aes(group=prop,lty=prop),lwd=0.3) + facet_grid(cols=vars(d_link$role)) + 
   scale_x_continuous(expand=c(0,0),limits=c(0,1000))+
   scale_y_continuous(expand=c(0,0),limits=c(-0.02,1.02))+
   theme_classic() + theme(axis.title.x = element_blank(),
@@ -78,7 +78,7 @@ lparasites2 <- ggplot(data=d_link,aes(x=gen,y=mat2/tot2)) + geom_line(aes(group=
   labs(lty="Initial Proportion of non-maters")+
   xlab("Generations") + ylab("")
 
-lpop_size <- ggplot(data=d_link,aes(x=gen,y=non_zero)) + geom_line(aes(group=prop,lty=prop)) + facet_grid(cols=vars(d_link$role)) + 
+lpop_size <- ggplot(data=d_link,aes(x=gen,y=non_zero)) + geom_line(aes(group=prop,lty=prop),lwd=0.3) + facet_grid(cols=vars(d_link$role)) + 
   scale_x_continuous(expand=c(0,0),limits=c(0,1000),breaks=c(0,250,500,750))+
   scale_y_continuous(expand=c(0,0),limits=c(-200,90200),breaks=c(0,30000,60000,90000))+
   theme_classic() + 
@@ -86,7 +86,7 @@ lpop_size <- ggplot(data=d_link,aes(x=gen,y=non_zero)) + geom_line(aes(group=pro
   theme(
     panel.grid.minor=element_blank(),
     axis.text.y=element_blank(),
-    axis.title.x = element_text(size=15),
+    axis.title.x = element_text(size=10),
     panel.grid.major=element_line(size=0.3,color="grey90"),
     strip.text.x=element_blank(),
     legend.position="bottom"
@@ -98,67 +98,66 @@ lpop_size <- ggplot(data=d_link,aes(x=gen,y=non_zero)) + geom_line(aes(group=pro
 umaters1 <- ggplot(data=d_unlink,aes(x=gen,y=p_maters1)) +
   scale_x_continuous(expand=c(0,0),limits=c(0,1000))+
   scale_y_continuous(expand=c(0,0),limits=c(-0.02,1.02))+
-  geom_line(aes(group=prop,lty=prop),size=0.6) + facet_grid(cols=vars(d_unlink$role)) + 
+  geom_line(aes(group=prop,lty=prop),lwd=0.3) + facet_grid(cols=vars(d_unlink$role)) + 
   theme_classic() + theme(axis.title.x = element_blank(),
                      axis.text.x = element_blank(),
                      axis.ticks.x = element_blank(),
-                     axis.title.y = element_text(size=15),
+                     axis.title.y = element_text(size=9),
                      panel.grid.minor = element_blank(),
-                     plot.title = element_text(size=25),
+                     plot.title = element_text(size=12),
                      panel.grid.major = element_line(size=0.3,colour="grey90"),
                      strip.background = element_blank(),
                      legend.position = "none") + 
-  ggtitle("Linkage = 0.0 (no linkage)") +
+  ggtitle(expression(paste("   ",lambda,"= 0.0 (no linkage)"))) +
   ylab("DMF Allele\nFreq.\nNucleus 1")
 umaters2 <- ggplot(data=d_unlink,aes(x=gen,y=p_maters2)) + 
   scale_x_continuous(expand=c(0,0),limits=c(0,1000))+
   scale_y_continuous(expand=c(0,0),limits=c(-0.02,1.02))+
-  geom_line(aes(group=prop,lty=prop),size=0.6) + facet_grid(cols=vars(d_unlink$role)) + 
+  geom_line(aes(group=prop,lty=prop),lwd=0.4) + facet_grid(cols=vars(d_unlink$role)) + 
   theme_classic() + theme(axis.title.x = element_blank(),
                      axis.text.x = element_blank(),
                      strip.text = element_blank(),
-                     axis.title.y = element_text(size=15),
+                     axis.title.y = element_text(size=9),
                      axis.ticks.x = element_blank(),
                      panel.grid.minor = element_blank(),
                      panel.grid.major = element_line(size=0.3,color="grey90"),
                      legend.position = "none") + 
   ylab("DMF Alelle\nFreq.\nNucleus 2")
 
-uparasites1 <- ggplot(data=d_unlink,aes(x=gen,y=mat1/tot1)) + geom_line(aes(group=prop,lty=prop),size=0.6) + facet_grid(cols=vars(d_unlink$role)) + 
+uparasites1 <- ggplot(data=d_unlink,aes(x=gen,y=mat1/tot1)) + geom_line(aes(group=prop,lty=prop),lwd=0.4) + facet_grid(cols=vars(d_unlink$role)) + 
   scale_x_continuous(expand=c(0,0),limits=c(0,1000))+
   scale_y_continuous(expand=c(0,0),limits=c(-0.02,1.02))+
   theme_classic() + theme(axis.title.x = element_blank(),
                      strip.text.x = element_blank(),
                      axis.text.x = element_blank(),
-                     axis.title.y = element_text(size=15),
+                     axis.title.y = element_text(size=9),
                      axis.ticks.x = element_blank(),
                      panel.grid.minor = element_blank(),
                      panel.grid.major = element_line(size=0.3,color="grey90"),
                      legend.position = "none") + 
   ylab("% Mating\nSpecialists\nNucleus 1")
-uparasites2 <- ggplot(data=d_unlink,aes(x=gen,y=mat2/tot2)) + geom_line(aes(group=prop,lty=prop),size=0.6) + facet_grid(cols=vars(d_unlink$role)) + 
+uparasites2 <- ggplot(data=d_unlink,aes(x=gen,y=mat2/tot2)) + geom_line(aes(group=prop,lty=prop),lwd=0.4) + facet_grid(cols=vars(d_unlink$role)) + 
   scale_x_continuous(expand=c(0,0),limits=c(0,1000))+
   scale_y_continuous(expand=c(0,0),limits=c(-0.02,1.02))+
   theme_classic() + theme(axis.title.x = element_blank(),
                      strip.text.x = element_blank(),
                      axis.text.x = element_blank(),
-                     axis.title.y = element_text(size=15),
+                     axis.title.y = element_text(size=9),
                      axis.ticks.x = element_blank(),
                      panel.grid.minor = element_blank(),
                      panel.grid.major = element_line(size=0.3,color="grey90"),
                      legend.position = "none") + 
-  labs(lty="Initial Proportion of non-maters")+
-  xlab("Generations") + ylab("% Mating\nSpecialists\nNucleus 2")
+  ylab("% Mating\nSpecialists\nNucleus 2")
 
-upop_size <- ggplot(data=d_unlink,aes(x=gen,y=non_zero)) + geom_line(aes(group=prop,lty=prop)) + facet_grid(cols=vars(d_unlink$role)) + 
+upop_size <- ggplot(data=d_unlink,aes(x=gen,y=non_zero)) + geom_line(aes(group=prop,lty=prop),lwd=0.4) + facet_grid(cols=vars(d_unlink$role)) + 
   scale_x_continuous(expand=c(0,0),limits=c(0,1000),breaks=c(0,250,500,750))+
   scale_y_continuous(expand=c(0,0),limits=c(-200,90200),breaks=c(0,30000,60000,90000))+
   theme_classic() + 
-  labs(y="",x="Generation",lty="Starting Proportion of  \n  non-DMF Alleles") +
+  labs(y="Population\nSize\n",x="Generation",lty="Starting Proportion of  \n  non-DMF Alleles") +
   theme(
     panel.grid.minor=element_blank(),
-    axis.title.y = element_text(size=15),
-    axis.title.x = element_text(size=15),
+    axis.title.y = element_text(size=9),
+    axis.title.x = element_text(size=9),
     panel.grid.major=element_line(size=0.3,color="grey90"),
     strip.text.x=element_blank(),
     legend.position="bottom")
@@ -173,7 +172,7 @@ upop_size <- ggplot(data=d_unlink,aes(x=gen,y=non_zero)) + geom_line(aes(group=p
 #             nrow=4,heights=c(1.3,1,1,1.5))
 #grid.arrange(umaters1,uparasites1,umaters2,uparasites2,
 #             nrow=4,heights=c(1.3,1,1,1.5))
-pdf("/Users/user/Desktop/Basid.Sex.Sim/Fig4_competition/fig_comp.May2.pdf",width=12,height=8.3)
+pdf("/Users/user/Desktop/Basid.Sex.Sim/Fig4_competition/fig_comp.May27.pdf",width=8,height=5.5)
 grid.arrange(umaters1,lmaters1,
              uparasites1,lparasites1,
              umaters2,lmaters2,

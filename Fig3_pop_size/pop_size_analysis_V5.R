@@ -27,7 +27,7 @@ files <- c("mn_fn_0.00","mn_fn_0.75",
            "my_fy_1.00")
 
 for (i in files){
-filename=paste0("/Users/user/Desktop/BMS/fig_pop_size_V5.2/",i,"_output.txt")
+filename=paste0("/Users/user/Desktop/Basid.Sex.Sim/Fig3_pop_size/",i,"_output.txt")
 d1 <- readChar(filename, file.info(filename)$size)
 d2 <- gsub("\n+","\n",d1, perl=TRUE)
 d3 <- gsub(" +"," ",d2,perl=TRUE)
@@ -73,12 +73,12 @@ p1 <- ggplot(data, aes(x=ngen,group=linkage)) + theme_classic() +
         panel.grid.minor= element_blank(),
         panel.grid.major= element_line(size=0.5,color="grey50"),
         legend.position="right",
-        axis.title = element_text(size=35),
-        plot.title = element_text(size=45),
-        strip.text = element_text(size=40),
-        legend.title = element_text(size=40),
-        legend.text  = element_text(size=35),
-        axis.text = element_text(size=30),
+        axis.title = element_text(size=25),
+        plot.title = element_text(size=35),
+        strip.text = element_text(size=30),
+        legend.title = element_text(size=30),
+        legend.text  = element_text(size=25),
+        axis.text = element_text(size=20),
         panel.spacing.x = unit(2.5,"lines")) +
   facet_grid(cols=vars(role))
 #p1
@@ -88,7 +88,7 @@ p1 <- ggplot(data, aes(x=ngen,group=linkage)) + theme_classic() +
 fitness <- data.frame()
 
 for (i in files){
-  filename=paste0("/Users/user/Desktop/BMS/fig_pop_size_V5.2/",i,"_output.txt")
+  filename=paste0("/Users/user/Desktop/Basid.Sex.Sim/Fig3_pop_size/",i,"_output.txt")
   d1 <- readChar(filename, file.info(filename)$size)
   d2 <- gsub("\n+","\n",d1, perl=TRUE)
   d3 <- gsub(" +"," ",d2,perl=TRUE)
@@ -150,13 +150,13 @@ p2 <- ggplot(fitness, aes(x=Gen,group=linkage)) + theme_classic() +
   theme(axis.title.y=element_text(angle=90,vjust=0.5),
         panel.grid.minor= element_blank(),
         legend.position="none",
-        axis.title = element_text(size=35),
-        plot.title = element_text(size=45),
-        strip.text = element_text(size=40),
-        legend.title = element_text(size=40),
-        legend.text  = element_text(size=35),
-        axis.text.x = element_text(size=35),
-        axis.text.y = element_text(size=35),
+        axis.title = element_text(size=25),
+        plot.title = element_text(size=35),
+        strip.text = element_text(size=30),
+        legend.title = element_text(size=30),
+        legend.text  = element_text(size=25),
+        axis.text.x = element_text(size=25),
+        axis.text.y = element_text(size=25),
         axis.ticks.y = element_blank(),
         panel.spacing.x = unit(2.5,"lines"),
         panel.spacing.y = unit(1,"lines"),
@@ -164,7 +164,7 @@ p2 <- ggplot(fitness, aes(x=Gen,group=linkage)) + theme_classic() +
   facet_grid(cols=vars(role),rows=vars(linkage))
 p2
 
-pdf("/Users/user/Desktop/BMS/fig_pop_size_V5.2/fig_pop_size.May2.png",width=10,height=8)
+png("/Users/user/Desktop/Basid.Sex.Sim/Fig3_pop_size/fig_pop_size.May27.png",width=1000,height=800)
 grid.arrange(p1,p2,nrow=2,heights=c(0.5,0.5))
 dev.off()
 

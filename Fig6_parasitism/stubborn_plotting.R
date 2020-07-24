@@ -8,7 +8,7 @@ linkage <- data.frame()
 reps <- c("1","2","3","4")
 
 for (i in reps){
-  d1 <- read.csv(paste0("/Users/user/Desktop/BMS/fig_stubborn_norm_V5.2/linkage_vary_",i,".parasite_summary.txt"),header=T)
+  d1 <- read.csv(paste0("/Users/user/Desktop/Basid.Sex.Sim/Fig6_parasitism/linkage_vary_",i,".parasite_summary.txt"),header=T)
   d1$rep <- i
   linkage <- rbind(linkage,d1)}
 rm(d1)
@@ -70,17 +70,17 @@ comb <- data.frame()
 reps <- c("1","2","3","4")
 
 for (i in reps){
-  d1 <- read.csv(paste0("/Users/user/Desktop/BMS/fig_stubborn_norm_V5.2/linkage_0.95_",i,".parasite_summary.txt"),header=T)
+  d1 <- read.csv(paste0("/Users/user/Desktop/Basid.Sex.Sim/Fig6_parasitism/linkage_0.95_",i,".parasite_summary.txt"),header=T)
   d1$linkage <- "0.95"
   d1$rep <- i
   comb <- rbind(comb,d1)}
 for (i in reps){
-  d1 <- read.csv(paste0("/Users/user/Desktop/BMS/fig_stubborn_norm_V5.2/linkage_0.99_",i,".parasite_summary.txt"),header=T)
+  d1 <- read.csv(paste0("/Users/user/Desktop/Basid.Sex.Sim/Fig6_parasitism/linkage_0.99_",i,".parasite_summary.txt"),header=T)
   d1$linkage <- "0.99"
   d1$rep <- i
   comb <- rbind(comb,d1)}
 for (i in reps){
-  d1 <- read.csv(paste0("/Users/user/Desktop/BMS/fig_stubborn_norm_V5.2/linkage_1.00_",i,".parasite_summary.txt"),header=T)
+  d1 <- read.csv(paste0("/Users/user/Desktop/Basid.Sex.Sim/Fig6_parasitism/linkage_1.00_",i,".parasite_summary.txt"),header=T)
   d1$linkage <- "full"
   d1$rep <- i
   comb <- rbind(comb,d1)}
@@ -114,7 +114,8 @@ p3 <- ggplot(summarized) + theme_bw() +
         axis.title=element_text(size=15),
         axis.text = element_text(size=15),
         strip.text = element_text(size=15),
-        strip.text.y = element_text(angle=0))+
+        strip.text.y = element_text(angle=0),
+        strip.background = element_blank())+
   geom_area(aes(x=value,y=m0.1/mzero),fill="darkorchid4",alpha=0.1)  + 
   geom_area(aes(x=value,y=m0.2/mzero),fill="darkorchid4",alpha=0.1)  + 
   geom_area(aes(x=value,y=m0.3/mzero),fill="darkorchid4",alpha=0.1)  + 
@@ -151,7 +152,7 @@ legend <- ggplot(legend_data) +
 
 #ggsave("C:\\Users\\auxie001\\Downloads\\fig_stubborn_norm\\test_plot.png")
 top_row <- plot_grid(p1,p2,legend,ncol=3,rel_widths=c(0.55,0.3,0.15))
-pdf("/Users/user/Desktop/BMS/fig_stubborn_norm_V5.2/fig_stubborn_norm_Apr30.pdf",width=10,height=10)
+pdf("/Users/user/Desktop/Basid.Sex.Sim/Fig6_parasitism/fig_stubborn_norm_May4.pdf",width=10,height=10)
 plot_grid(top_row,p3,nrow=2,rel_heights=c(0.3,0.7))
 dev.off()
 
